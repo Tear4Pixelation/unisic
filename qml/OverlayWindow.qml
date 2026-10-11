@@ -514,8 +514,8 @@ Window {
         // alpha, so the numbers themselves are not dimmed with it.
         Rectangle {
             visible: canvas.hasSelection
-            x: Math.min(root.selItem().x, parent.width - width - 8)
-            y: Math.max(4, root.selItem().y - height - 10)
+            x: Math.round(Math.min(root.selItem().x, parent.width - width - 8))
+            y: Math.round(Math.max(4, root.selItem().y - height - 10))
             width: dimText.implicitWidth + 22
             height: 28
             radius: 14
@@ -667,10 +667,11 @@ Window {
             // Capture-on-release confirms the moment the drag ends — the
             // toolbar would only flash mid-drag, so don't show it at all.
             visible: canvas.hasSelection && !canvas.confirmOnRelease
-            x: root.toolbarX()
-            y: root.toolbarY()
-            width: toolColumn.implicitWidth + 24
-            height: toolColumn.implicitHeight + 14
+            // Whole pixels: the layer texture is resampled at any fraction.
+            x: Math.round(root.toolbarX())
+            y: Math.round(root.toolbarY())
+            width: Math.ceil(toolColumn.implicitWidth) + 24
+            height: Math.ceil(toolColumn.implicitHeight) + 14
             radius: 27
             gradient: Gradient {
                 GradientStop { position: 0.0; color: Qt.lighter(Theme.primary, 1.25) }
