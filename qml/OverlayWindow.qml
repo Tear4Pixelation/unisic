@@ -726,6 +726,7 @@ Window {
                                 // AT-SPI's Press action works without focus, so
                                 // dropping out of the Tab chain costs nothing.
                                 activeFocusOnTab: false
+                                iconSize: ToolCatalog.overlayIconSize
                                 iconName: modelData.kind === "group"
                                           ? modelData.group.iconName
                                           : ToolCatalog.toolIconName(modelData.tool, App.settings.editorIconStyle, App.settings.editorToolIcons)
@@ -753,8 +754,8 @@ Window {
                                            : canvas.tool = modelData.tool.tool
                             }
                         }
-                        ToolChip { activeFocusOnTab: false; iconName: "edit-undo"; label: qsTr("Undo"); enabled: canvas.canUndo; onClicked: canvas.undo() }
-                        ToolChip { activeFocusOnTab: false; iconName: "edit-redo"; label: qsTr("Redo"); enabled: canvas.canRedo; onClicked: canvas.redo() }
+                        ToolChip { activeFocusOnTab: false; iconSize: ToolCatalog.overlayIconSize; iconName: "edit-undo"; label: qsTr("Undo"); enabled: canvas.canUndo; onClicked: canvas.undo() }
+                        ToolChip { activeFocusOnTab: false; iconSize: ToolCatalog.overlayIconSize; iconName: "edit-redo"; label: qsTr("Redo"); enabled: canvas.canRedo; onClicked: canvas.redo() }
 
                         // Carried in a chip-tall Item: a Flow positions its
                         // children itself, so a 28 px divider cannot centre
@@ -829,6 +830,7 @@ Window {
                             model: root.shapesActive ? root.shapesTools : []
                             delegate: ToolChip {
                                 activeFocusOnTab: false
+                                iconSize: ToolCatalog.overlayIconSize
                                 iconName: ToolCatalog.toolIconName(modelData, App.settings.editorIconStyle, App.settings.editorToolIcons)
                                 iconStyle: App.settings.editorIconStyle
                                 label: ToolCatalog.labelWithShortcut(modelData)
@@ -842,6 +844,7 @@ Window {
                         }
                         ToolChip {
                             activeFocusOnTab: false
+                            iconSize: ToolCatalog.overlayIconSize
                             visible: canvas.hasAnnotSelection
                             iconName: "edit-delete"
                             label: qsTr("Delete shape")
